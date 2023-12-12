@@ -1,0 +1,284 @@
+{% load static %}
+{% static "" as app_url%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Home - Append Bootstrap Temlate</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{{app_url}}assets/img/favicon.png" rel="icon">
+  <link href="{{app_url}}assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{app_url}}assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{app_url}}assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="{{app_url}}assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="{{app_url}}assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="{{app_url}}assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{{app_url}}assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Append
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/append-bootstrap-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page" data-bs-spy="scroll" data-bs-target="#navmenu">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container-fluid d-flex align-items-center justify-content-between" >
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1>Append</h1>
+        <span>.</span>
+      </a>
+
+      <!-- Nav Menu -->
+      <nav id="navmenu" class="navmenu" >
+        <ul>
+          <li><a href="index.html#hero" class="active">Feeds</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav><!-- End Nav Menu -->
+      <a class="btn-getstarted" href="index.html#about">About us</a>
+
+    </div>
+    <style>
+      form {
+        max-width: 300px; /* Set a maximum width for the form container */
+        margin: 0 auto; /* Center the form horizontally */
+    }
+
+        .form-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 400px;
+        }
+
+        .tab-bar {
+            display: flex;
+            justify-content: space-around;
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .tab {
+            cursor: pointer;
+            padding: 10px;
+            flex: 1;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .tab:hover {
+            background-color: #2980b9;
+        }
+
+        .form-content {
+            padding: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #2ecc71;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .switch-form {
+            text-align: center;
+        }
+
+        .switch-form a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .switch-form a:hover {
+            color: #2980b9;
+        }
+    </style>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- Hero Section - Home Page{% static 'assets/img/hero-bg.jpg'%} -->
+    <section id="hero" class="hero">
+      
+      <img src="{{app_url}}assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5">
+      <div class="backgroung-container">
+        <div class="form-container">
+            <div class="tab-bar">
+                <div class="tab" onclick="showSignUp()">Sign Up</div>
+                <div class="tab" onclick="showSignIn()">Sign In</div>
+            </div>
+            <div class="form-content" id="sign-up-form" >
+                <form method="post" action="{% url 'signup' %}">
+                    {% csrf_token  %}
+                    {% for field in form %}
+                      <div class="form-group">
+                        {{ field }}
+                      </div>
+                    {% endfor %}
+                    <div class="form-group">
+                        <input type="submit" value="Sign Up">
+                    </div>
+                </form>
+            </div>
+            <div class="form-content" id="sign-in-form"  style="display: none;">
+                <form action="{% url 'signin' %}" method="post">
+                  {% csrf_token %}
+                  {% for field in login_form %}
+                  <div class="form-group">
+                    {{ field }}
+                  </div>
+                  {% endfor %}
+                    <div class="form-group">
+                        <input type="submit" value="Sign In">
+                    </div>
+                </form>
+                <div class="switch-form">
+                    <a href="#">Forgot password?</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- End Hero Section -->
+
+  </main>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="container footer-top">
+      <div class="row gy-4 " >
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span>Append</span>
+          </a>
+          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>A108 Adam Street</p>
+          <p>New York, NY 535022</p>
+          <p>United States</p>
+          <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
+          <p><strong>Email:</strong> <span>info@example.com</span></p>
+        </div>
+
+      </div>
+    </div>
+
+
+  <!-- Vendor JS Files -->
+  <script src="{{app_url}}assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="{{app_url}}assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="{{app_url}}assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="{{app_url}}assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="{{app_url}}assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="{{app_url}}assets/vendor/aos/aos.js"></script>
+  <script src="{{app_url}}assets/vendor/php-email-form/validate.js"></script>
+  <script>
+    function showSignIn() {
+        document.getElementById('sign-in-form').style.display = 'block';
+        document.getElementById('sign-up-form').style.display = 'none';
+    }
+
+    function showSignUp() {
+        document.getElementById('sign-in-form').style.display = 'none';
+        document.getElementById('sign-up-form').style.display = 'block';
+    }
+</script>
+  <!-- Template Main JS File -->
+  <script src="{{app_url}}assets/js/main.js"></script>
+
+</body>
+
+</html>

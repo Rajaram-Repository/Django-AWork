@@ -1,0 +1,21 @@
+<!-- base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}My Site{% endblock %}</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        {% block content %}{% endblock %}
+    {% else %}
+        {% block redirect_content %}
+            <p>You are not logged in. Redirecting to the <a href="{% url 'awork' %}">index page</a>...</p>
+            <script>
+                setTimeout(function() {
+                    window.location.href = "{% url 'awork' %}";
+                }, 2000);  // Redirect after 2 seconds (adjust as needed)
+            </script>
+        {% endblock %}
+    {% endif %}
+</body>
+</html>
