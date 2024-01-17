@@ -30,13 +30,15 @@ SECRET_KEY = 'django-insecure-q87=*l^n=@g5t1v1$j9y)1+bw_^!cwivpomg7l5o(v7k6d^4!d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['* ']
+ALLOWED_HOSTS = [ 'localhost', '127.0.0.1','192.168.1.10']
 
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,8 +47,26 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'awork_login',
     'awork_desktop',
+    'awork_public',
     'rest_framework',
+    'django_otp',
+    'django_otp.plugins.otp_totp',
+    'crispy_forms',
 ]
+ASGI_APPLICATION = 'AWork.asgi.application' 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
+
 
 AUTH_USER_MODEL = 'awork_login.CustomUser'
 
@@ -59,6 +79,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+# settings.py
+
+# Set the session cookie age to 60 minutes (60 * 60 seconds)
+SESSION_COOKIE_AGE = 60 * 60
+
+# Update the session expiration on each request
+SESSION_SAVE_EVERY_REQUEST = True
 
 ROOT_URLCONF = 'AWork.urls'
 
@@ -92,9 +119,9 @@ DATABASES = {
         'PASSWORD':'2468',
         'HOST':'localhost',
         'PORT':'3306',
-    }
-}
+    },
 
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

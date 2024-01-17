@@ -1,0 +1,407 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+
+{% block title %}AWork - Post {% endblock %}
+
+{% block content %}
+    
+{% load static %}
+{% static "" as app_url%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mojito Theme Navigation Bar</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.17.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        /* Styles for Mojito Theme Navigation Bar */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: white; /* Mojito theme background color */
+        }
+
+        nav {
+            background-color: black; /* Mojito theme navbar color */
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            color: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+        }
+
+        .nav-links a:hover {
+            color: #afaeec; /* Mojito theme highlight color */
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: black; /* Mojito theme dropdown background color */
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #707070; /* Mojito theme dropdown highlight color */
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .icon {
+            margin-right: 5px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Additional Styles for Post Display */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .likes-comments {
+            margin-top: 10px;
+            font-size: 0.8em;
+            color: #555;
+        }
+
+        /* Styles for Likes and Comments */
+        .liked {
+            color: red;
+        }
+
+        .comments-section {
+            margin-top: 10px;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+
+        .comment {
+            border-bottom: 1px solid #ddd;
+            padding: 5px 0;
+        }
+
+        /* Styles for Search Box 
+        .search-box {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .search-box input[type="text"] {
+            padding: 5px;
+        }
+
+        .search-box button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }*/
+    </style>
+    <style>
+        /* Styles for the modal overlay */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Additional styling for the form */
+        .form-1 {
+            /* Your form styles go here */
+            text-align: center;
+
+        }
+        .search-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+    
+        .search-box form {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+    
+        .search-box input[type="text"] {
+            padding: 5px;
+        }
+    
+        .form-1 label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    
+        .form-1 input {
+            width: 50%; /* Make input fields take up 100% width of the form */
+            padding: 8px; /* Adjust padding for better aesthetics */
+            margin-bottom: 10px;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+    
+
+    
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <img src="{{app_url}}assets/img/awork-logo.png" width="136" height="25">
+        </div>
+        <div class="nav-links">
+            <p class="bi bi-house-door icon"></i>{{user.username}}</p>
+            <a href="{% url 'all_post' %}"><i class="bi bi-house-door icon"></i>Home</a>
+            <a href="{% url 'mydesktop' %}"><i class="bi bi-laptop icon"></i>Desktop</a>
+            <div class="dropdown">
+                <a href="{% url 'home' %}"><i class="bi bi-person icon"></i>Profile</a>
+                <div class="dropdown-content">
+                    <a href="#">Edit Profile</a>
+                    <a href="#">Settings</a>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Box -->
+    <br>
+
+    <div class="search-box">
+        <button  class="btn btn-primary" onclick="showForm()">New Post</button>
+        <form action="{% url 'all_post' %}" method="get">
+            <input type="text" name="search" id="searchInput" placeholder="Search..." value="{{ search_term }}">
+            <button  class="btn btn-primary" type="submit">Search</button>
+        </form>
+    </div>
+    
+
+    <!-- Modal overlay containing the form -->
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal-content">
+    
+            <form class ="form-1" id="myForm" method="post" action="{% url 'insert_post' %}">
+                {% csrf_token %}
+                <label for="name">Title :</label>
+                <input style="height: 30px;" type="text" name="title"  id="title" required>
+                <br>
+                <label for="description">Description :</label>
+                <input style="height: 100px;" type="text" name="description" id="description" required>
+                <br>
+                <label  for="query">Post :</label>
+                <input style="height: 50px;" type="text" name="json_data" id="json_data" required>
+                <br>
+                <button class="btn btn-danger" onclick="closeForm()">Cancel</button>
+                <span>&nbsp;&nbsp;</span>
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    {% if data %}
+        <ul>
+            {% for post in data %}
+                <li>
+                    <h2>#{{ post.pk }} {{ post.title }}</h2>
+                    <p>Post : {{ post.json_data }}</p>
+                    <br>
+                    <p>Description : {{ post.description }}</p>
+                    <div class="likes-comments">
+                        {% if post.user_likes %}
+                            {% for like in post.user_likes %}
+                                    {% if like.type == 'Like' %}
+                                    <span style="color: blue;" class="{% if post.is_liked %}liked{% endif %}" id="like-{{ post.pk }}">
+                                        Likes: {{ post.like_count }}
+                                    </span>
+                                    <span>&nbsp;&bull;&nbsp;</span>
+                                        <button   onclick="likePost({{ post.pk }},1)">&#128078;</button>    
+                                        <span class="{% if post.is_liked %}liked{% endif %}" id="like-{{ post.pk }}">
+                                            DisLikes: {{ post.dislike_count }}
+                                        </span>  
+                                    {% else %}
+                                    <span class="{% if post.is_liked %}liked{% endif %}" id="like-{{ post.pk }}">
+                                        Likes: {{ post.like_count }}
+                                    </span>
+                                    <span>&nbsp;&bull;&nbsp;</span>
+                                        <button  onclick="likePost({{ post.pk }},0)">&#128077;</button>
+                                        <span style="color: rgb(253, 110, 110);" class="{% if post.is_liked %}liked{% endif %}" id="like-{{ post.pk }}">
+                                            DisLikes: {{ post.dislike_count }}
+                                        </span> 
+                                    {% endif %}
+                            {% endfor %}
+
+                        {% else %}
+                        <span class="{% if post.is_liked %}liked{% endif %}" id="like-{{ post.pk }}">
+                            Likes: {{ post.like_count }}
+                        </span>
+                        <span>&nbsp;&bull;&nbsp;</span>
+                            <button  onclick="likePost({{ post.pk }},0)">&#128077;</button>
+                            <span class="{% if post.is_liked %}liked{% endif %}" id="like-{{ post.pk }}">
+                                DisLikes: {{ post.dislike_count }}
+                            </span>
+                            <button  onclick="likePost({{ post.pk }},1)">&#128078;</button> 
+                            <span>&nbsp;&bull;&nbsp;</span>
+                        {% endif %}
+
+                        
+                                          
+                        <div class="comments-section">
+                            <h3>Comments</h3>
+                            <ul id="comments-{{ post.pk }}"  style="display: none;" >
+                                    {% for comment in post.all_comments %}
+                                        <li>{{ comment.text }} - {{ comment.created_at }}</li>
+                                    {% endfor %}
+                            </ul>
+                            <button class="btn btn-secondary" id="show-comments-{{ post.pk }}" onclick="showComments({{ post.pk }})">Show Comments</button>
+                            <button class="btn btn-secondary" onclick="addComment({{ post.pk }})">Add Comment</button>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="pagination">
+            <span class="step-links">
+                {% if data.has_previous %}
+                    <a href="?page={{ data.previous_page_number }}"> <<< </a>
+                {% endif %}
+    
+                <span class="current">
+                    Page {{ data.number }} of {{ data.paginator.num_pages }}.
+                </span>
+    
+                {% if data.has_next %}
+                    <a href="?page={{ data.next_page_number }}"> >>> </a>
+                {% endif %}
+            </span>
+        </div>
+    {% else %}
+        <p>No posts available.</p>
+    {% endif %}
+
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    function likePost(postId,flag) {
+        $.post(`like_post/${postId}/${flag}`, function(data) {
+            alert(data.message);
+            if (data.success) {
+                var likeSpan = $(`#like-${postId}`);
+                likeSpan.text(`Likes: ${data.likes_count}`);
+                likeSpan.toggleClass('liked', data.is_liked);
+            }
+        });
+    }
+
+    function showComments(postId) {
+        var commentsSection = $(`#comments-${postId}`);
+        commentsSection.toggle();
+        var button = $(`#show-comments-${postId}`);
+        if (commentsSection.is(':visible')) {
+            button.text('Hide Comments');
+        } else {
+            button.text('Show Comments');
+        }
+    }
+
+    function addComment(postId) {
+        var text = prompt("Enter your comment:");
+        if (text !== null) {
+            $.post(`add_comment/${postId}/`, {text: text}, function(data) {
+                alert(data.message);
+                if (data.success) {
+                    var commentsSection = $(`#comments-${postId}`);
+                    commentsSection.append(`<li class="comment">${data.comment.text}</li>`);
+                }
+            });
+        }
+    }
+
+</script>
+<script>
+    // Assuming you want to show the form after a certain event, like a button click
+    function showForm() {
+        var modalOverlay = document.getElementById('modalOverlay');
+        modalOverlay.style.display = 'flex';
+    }
+
+    function closeForm() {
+        var modalOverlay = document.getElementById('modalOverlay');
+        modalOverlay.style.display = 'none';
+    }
+</script>
+{% endblock %}

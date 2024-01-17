@@ -16,9 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from .views import DownloadScriptView
+
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('download/', DownloadScriptView.as_view(), name='download_script'),
     path('awork/',include('awork_login.urls')),
     path('awork/desktop/',include('awork_desktop.urls')),
-    path('admin/', admin.site.urls),
+    path('awork/post/', include('awork_public.urls')),
 ]

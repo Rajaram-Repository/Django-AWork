@@ -1,9 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-import hashlib
-import requests
+from django.conf import settings
 
- 
+class OTP(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    otp_secret = models.CharField(max_length=16)
+    new_email=models.EmailField(max_length=254, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 class UserManager(BaseUserManager):
     def create_user(self, username, password, **extra_fields):
         if not username:
@@ -47,4 +50,3 @@ class CustomUser(AbstractBaseUser):
     def __str__(self):
         return self.username
     
-

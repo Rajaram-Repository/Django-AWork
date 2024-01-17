@@ -1,3 +1,8 @@
+{% extends 'base.html' %}
+
+{% block title %}AWork - Desktop{% endblock %}
+
+{% block content %}
 {% load static %}
 {% static "" as app_url%}
 <!DOCTYPE html>
@@ -80,101 +85,168 @@
             align-items: center;
         }
     </style>
+      <style>
+        hr {
+            border: 1px solid #333; /* Set the border color to dark gray */
+            margin: 20px 0; /* Add some margin above and below the line */
+        }
+    </style>
     <style>
-        form {
-          max-width: 300px; /* Set a maximum width for the form container */
-          margin: 0 auto; /* Center the form horizontally */
-      }
-  
-          .form-container {
-              background-color: #fff;
-              border-radius: 8px;
-              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-              overflow: hidden;
-              width: 400px;
-          }
-  
-          .tab-bar {
-              display: flex;
-              justify-content: space-around;
-              background-color: #3498db;
-              color: #fff;
-              padding: 10px;
-          }
-  
-          .tab {
-              cursor: pointer;
-              padding: 10px;
-              flex: 1;
-              text-align: center;
-              transition: background-color 0.3s ease;
-          }
-  
-          .tab:hover {
-              background-color: #2980b9;
-          }
-  
-          .form-content {
-              padding: 20px;
-          }
-  
-          .input-group {
-              margin-bottom: 15px;
-          }
-  
-          .input-group label {
-              display: block;
-              margin-bottom: 5px;
-          }
-  
-          .input-group input {
-              width: 100%;
-              padding: 8px;
-              box-sizing: border-box;
-              border: 1px solid #ccc;
-              border-radius: 4px;
-          }
-  
-          .form-group {
-              margin-bottom: 20px;
-          }
-  
-          .form-group input[type="submit"] {
-              background-color: #2ecc71;
-              color: #fff;
-              padding: 10px;
-              border: none;
-              border-radius: 4px;
-              cursor: pointer;
-          }
-  
-          .switch-form {
-              text-align: center;
-          }
-  
-          .switch-form a {
-              color: #3498db;
-              text-decoration: none;
-              transition: color 0.3s ease;
-          }
-  
-          .switch-form a:hover {
-              color: #2980b9;
-          }
-          .add-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        /* Styles for Mojito Theme Navigation Bar */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: white; /* Mojito theme background color */
         }
 
-        .add-button:hover {
-            background-color: #45a049;
+        nav {
+            background-color: black; /* Mojito theme navbar color */
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            color: #fff;
         }
-      </style>
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+        }
+
+        .nav-links a:hover {
+            color: #afaeec; /* Mojito theme highlight color */
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: black; /* Mojito theme dropdown background color */
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #707070; /* Mojito theme dropdown highlight color */
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .icon {
+            margin-right: 5px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Additional Styles for Post Display */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+    .uppercase {
+        text-transform: uppercase;
+    }
+        p {
+            margin: 0;
+        }
+
+        .likes-comments {
+            margin-top: 10px;
+            font-size: 0.8em;
+            color: #555;
+        }
+
+        /* Styles for Likes and Comments */
+        .liked {
+            color: red;
+        }
+
+        .comments-section {
+            margin-top: 10px;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+
+        .comment {
+            border-bottom: 1px solid #ddd;
+            padding: 5px 0;
+        }
+
+        /* Styles for Search Box */
+        .search-box {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .search-box input[type="text"] {
+            padding: 5px;
+        }
+
+        .search-box button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+         .textbox-wrapper {
+            width: 100%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        } 
+        .form-group1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+   
+    </style>
 </head>
 <body>
 
@@ -183,72 +255,321 @@
             <img src="{{app_url}}assets/img/awork-logo.png" width="136" height="25">
         </div>
         <div class="nav-links">
-            <a href="#"><i class="bi bi-house-door icon"></i>{{user.username}}</a>
-            <a href="#"><i class="bi bi-house-door icon"></i>Home</a>
-            <a href="#"><i class="bi bi-laptop icon"></i>Desktop</a>
+            <p class="bi bi-house-door icon"></i>{{user.username}}</p>
+            <a href="{% url 'all_post' %}"><i class="bi bi-house-door icon"></i>Home</a>
+            <a href="{% url 'mydesktop' %}"><i class="bi bi-laptop icon"></i>Desktop</a>
             <div class="dropdown">
-                <a href="#"><i class="bi bi-person icon"></i>Profile</a>
+                <a href="{% url 'home' %}"><i class="bi bi-person icon"></i>Profile</a>
                 <div class="dropdown-content">
                     <a href="#">Edit Profile</a>
                     <a href="#">Settings</a>
-                    <a href="#">Logout</a>
+                    <a href="{% url 'logout' %}">Logout</a>
                 </div>
             </div>
         </div>
     </nav>
     {% if add_tag %}
-    <div class="form-group">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal">
-            Add Desktop
-        </button>
-    </div>
+        <div class="form-group1">
+                No Desktop 
+        </div>
     {% else %}
     {% for field1 in desk_list %}
     <div class="form-content" id="sign-up-form" >
-        <form method="post" action="{% url 'mydesktop' %}">
-            <label for="username">{{ field1.ipadress }}</label><br>
-            <label for="username1">{{ field1.name }}</label><br>
-            <label for="username2">{{ field1.query_id }}</label>
-            <div class="form-group">
-                <input type="submit" value="Sync">
-            </div>
-        </form>
+            {% if field1.web_sync %}
+            <br>
+                <h4 class="uppercase" for="username1">{{ field1.name }}</h4><br>
+                {% if field1.schedule_ip_books.all %}
+                <table class = "table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Task Name</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>UTC</th>
+                            <th>Query</th>
+                            <th style="display: none;">desk_name</th>
+                            <th style="display: none;" >id_schedule</th>
+                            <th style="display: none;" >user</th>
+                            <th style="display: none;" >row_id</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead> 
+                    {% for task in field1.schedule_ip_books.all %}
+                    <tbody>
+                        <tr>
+                            <td>{{ task.schedule_name }}</td>
+                            <td>{{ task.date }}</td>
+                            <td>{{ task.time }}</td>
+                            <td>{{ task.utc }}</td>
+                            <td>{{ task.query }}</td>
+                            <td style="display: none;">{{ task.name }}</td>
+                            <td  style="display: none;">{{ task.pk }}</td>
+                            <td  style="display: none;">{{ field1.name }}</td>
+                            <td  style="display: none;">{{ task.row_id }}</td>
+                            <td><button class="edit-button" onclick="openEditForm(this)">Edit</button></td>
+                        </tr>
+                    </tbody>
+                    {% endfor %} 
+                </table>     
+                {% endif %}
+                <!-- <form method="post" action="{% url 'edit_schedule' %}"> -->
+                <form id="myForm{{ field1.name }}" data-token="{{ field1.token }}" > 
+                    {% csrf_token %} 
+
+            
+                    <!--input type="text" name="query" id="id_query" required> -->
+                    <div class="textbox-wrapper">
+                        <div class="input-group">
+                            <input type="hidden" name="desk_name" value="{{ field1.name }}"/>
+                            <input type="hidden" name="id_schedule" id="id_schedule"  required>
+                            <input type="hidden" name="row_id" id="row_id"  required>
+                            <label for="id_date">Date:</label>
+                            <span>&nbsp;&nbsp;</span>
+                            <input type="date" name="date" id="id_date" required>
+                            <span>&nbsp;&nbsp;</span>
+                            <label for="id_time">Time:</label>
+                            <span>&nbsp;&nbsp;</span>
+                            <input type="time" name="time" id="id_time" required>
+                            <span>&nbsp;&nbsp;</span>
+                    
+                            <label for="id_utc">UTC:</label>
+                            <span>&nbsp;&nbsp;</span>
+                            <input type="text" name="utc" id="id_utc" required style="width:5%;">
+                            <span>&nbsp;&nbsp;</span>
+                    
+                            <label for="id_task_name">Task Name:</label>
+                            <span>&nbsp;&nbsp;</span>
+                            <input type="text" name="task_name" id="id_task_name" required>
+                            <span>&nbsp;&nbsp;</span>
+ 
+                            <label for="id_query">Query:</label>
+                            <span>&nbsp;&nbsp;</span>
+                            <select name="dropdown_arr[]" class="form-control">
+                                <option value="ID">ID</option>
+                                <option value="CMD">CMD</option>
+                                <option value="AutoPy">AutoPy</option>
+                                <option value="Custom">Custom</option>
+                            </select>
+                            <span>&nbsp;&nbsp;</span>
+                            <input type="text" name="text_arr[]" class="form-control" />
+                            <span>&nbsp;&nbsp;</span>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-success add-textbox"><i class="glyphicon glyphicon-plus"></i></button>
+                            </span>
+                            <span>&nbsp;&nbsp;</span>
+                            <button type="button" class="btn btn-primary" onclick="submitForm(this)">Submit</button>
+                        </div>
+                    </div>
+                    
+                </form> 
+                <hr>
+            {% else %}
+                <h4 for="username1">{{ field1.name }}</h4><br>
+                <form method="post" action="{% url 'mydesktop' %}">
+                    {% csrf_token %}
+                    <label for="desk_ip">{{ field1.ipadress }}</label><br>
+                    {% if field1.desk_sync %}
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                    {% else %}
+                        <label for="desk_connection">Desktop No connection </label><br>
+                    {% endif %}
+                    <input type="hidden" name="desk_name" value="{{ field1.name }}">
+                    <br>
+                    <div class="form-group">
+                        <input type="submit" value="Sync">
+                    </div>
+                </form>
+                <hr>
+            {% endif %}
     </div>
     {% endfor %}
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal">
-        Add Desktop
-    </button>
     {% endif %}
-    <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="userModalLabel">Add User</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!-- Form inside the modal -->
-                    <form method="post" action="{% url 'mydesktop' %}">
-                        {% csrf_token %}
-                        {% for field in form_desk %}
-                        <div class="form-group">
-                            {{ field }}
-                        </div>
-                        {% endfor %}
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Bootstrap JS and Popper.js (required for Bootstrap) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var max = 10;
+        var cnt = 1;
+        $(".add-textbox").on("click", function(e){
+            e.preventDefault();
+            if(cnt < max){
+                cnt++;
+                var newInputGroup = '<div class="input-group">';
+                    // Add select dropdown
+                    newInputGroup += '<select name="dropdown_arr[]" class="form-control">';
+                    newInputGroup += '<option value="ID">ID</option>';
+                    newInputGroup += '<option value="CMD">CMD</option>';
+                    newInputGroup += '<option value="AutoPy">AutoPy</option>';
+                    newInputGroup += '<option value="Custom">Custom</option>';
+                    newInputGroup += '</select>';
+
+                    newInputGroup += '<input type="text" name="text_arr[]" class="form-control" />';
+                    // Add remove button
+                    newInputGroup += '<span class="input-group-btn">';
+                    newInputGroup += '<button type="button" class="btn btn-danger remove-textbox"><i class="glyphicon glyphicon-minus"></i></button>';
+                    newInputGroup += '</span>';
+                    
+                    newInputGroup += '</div>';
+    
+                    $(".textbox-wrapper").append(newInputGroup);
+            }
+        });
+       
+        $(".textbox-wrapper").on("click",".remove-textbox", function(e){
+            e.preventDefault();
+            $(this).parents(".input-group").remove();
+            cnt--;
+        });
+    });
+    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function openEditForm(button) {
+            var row = button.parentNode.parentNode;
+            
+            // Get the values from the table cells
+            var name = row.cells[0].innerText;
+            var date = row.cells[1].innerText;
+            var time = row.cells[2].innerText;
+            var utc = row.cells[3].innerText;
+            var query = row.cells[4].innerText;
+            var desk_name = row.cells[5].innerText;
+            var id_schedule = row.cells[6].innerText;
+            var user = row.cells[7].innerText;
+            var row_id = row.cells[8].innerText;
+            // Set the form fields in the popup
+            var formName = 'myForm' + user;
+            var form = document.forms[formName];
+            console.log(name,date,form)
+            // Set the form fields in the popup
+            form.querySelector('#id_task_name').value = name;
+            form.querySelector('#id_date').value = date;
+            form.querySelector('#id_time').value = time;
+            form.querySelector('#id_utc').value = utc;
+            form.querySelector('#id_query').value = query;
+            form.querySelector('#id_schedule').value = id_schedule;
+            form.querySelector('#row_id').value = row_id;
+        }
+
+        function submitForm(button) {
+            var form = button.closest('form');
+            const formData = new FormData(form);
+            const formDataObject = {};
+            const query_data = {
+                                "query": {}
+                                };
+            var options =[];
+            var values =[];
+            formData.forEach((value, key) => {
+                if (key == "dropdown_arr[]") {
+                    options.push(value);
+                }
+                else if (key == "text_arr[]") {
+                    values.push(value);
+                }
+                else {
+                    formDataObject[key] = value;
+                }
+            });
+            for (var i = 0; i < Math.min(options.length, values.length); i++) {
+                var key = (i + 1).toString();
+                var option = options[i];
+                var value = values[i];
+              
+                query_data.query[key] = {};
+                query_data.query[key][option] = value;
+              }
+              formDataObject["query"] = query_data;
+            console.log(formDataObject)
+            const token = form.getAttribute('data-token');
+            const page = formDataObject['desk_name'];
+            update_api(formDataObject,page,token);
+        }
+        function update_api(formData,page,token){
+            res = false
+            fetch('{% url "edit_schedule" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': formData['csrfmiddlewaretoken'],
+                },
+                body: JSON.stringify(formData),
+            }).then(response => response.json())
+            .then(data => {
+                if ('Error' in data) {
+                    alert(data.Error);
+                    res = false;
+                } else {
+                    socket(formData,page,token);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        function socket(formData,page,token){
+            const socketUrl = `ws://localhost:8000/ws/${page}/?token=${token}`;
+            const socket = new WebSocket(socketUrl);
+            socket.addEventListener('open', (event) => {
+                console.log('WebSocket connection opened');
+                // Send the form data when the connection is established
+                socket.send(JSON.stringify(formData));
+            });
+        
+            // Listen for messages
+            socket.addEventListener('message', (event) => {
+                console.log('Message from server:', event.data);
+            });
+        
+            // Connection closed
+            socket.addEventListener('close', (event) => {
+                console.log('WebSocket connection closed');
+            });
+        
+            // Connection error
+            socket.addEventListener('error', (event) => {
+                console.error('WebSocket connection error:', event);
+            });
+        
+            alert("Successfully Insert ")
+            location.reload();              
+        }
+        function toggleEditMode() {
+            var editButton = document.querySelector('button');
+            var submitButton = document.querySelector('input[type="submit"]');
+            var editableFields = document.querySelectorAll('.editable');
+            var readonlyFields = document.querySelectorAll('.readonly');
+    
+            if (editButton.innerHTML === 'Edit') {
+                editButton.innerHTML = 'Cancel';
+                submitButton.style.display = 'inline-block';
+    
+                editableFields.forEach(function(field) {
+                    field.removeAttribute('readonly');
+                    field.style.display = 'inline-block';
+                });
+    
+                readonlyFields.forEach(function(field) {
+                    field.style.display = 'none';
+                });
+            } else {
+                editButton.innerHTML = 'Edit';
+                submitButton.style.display = 'none';
+    
+                editableFields.forEach(function(field) {
+                    field.setAttribute('readonly', true);
+                    field.style.display = 'none';
+                });
+    
+                readonlyFields.forEach(function(field) {
+                    field.style.display = 'inline-block';
+                });
+            }
+        }
+    </script>
     
 </body>
 </html>
+{% endblock %}
